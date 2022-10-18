@@ -17,7 +17,7 @@ public class Tcl554ASvillage {
 	private String name;
 	
 	@ManyToOne
-	private Cell cell;
+	private Cell cellid;
 
 	public int getId() {
 		return id;
@@ -35,13 +35,15 @@ public class Tcl554ASvillage {
 		this.name = name;
 	}
 
-	public Cell getCell() {
-		return cell;
+	public Cell getCellid() {
+		return cellid;
 	}
 
-	public void setCell(Cell cell) {
-		this.cell = cell;
+	public void setCellid(Cell cellid) {
+		this.cellid = cellid;
 	}
+
+	
 	
 	
 	

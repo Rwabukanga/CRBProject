@@ -17,7 +17,7 @@ public class Tcl550MaritStatusServiceImplementation implements Tcl550MaritStatus
 	private Tcl550MaritStatusRepository statusrepo;
 
 	@Override
-	public Tcl550MaritStatus createTcl01Client(Tcl550MaritStatus client) {
+	public Tcl550MaritStatus createMartalStatus(Tcl550MaritStatus client) {
 		// TODO Auto-generated method stub
 		return statusrepo.save(client);
 	}

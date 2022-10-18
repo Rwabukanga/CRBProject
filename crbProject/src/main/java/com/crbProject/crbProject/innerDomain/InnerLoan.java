@@ -1,26 +1,18 @@
-package com.crbProject.crbProject.Domain;
+package com.crbProject.crbProject.innerDomain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.crbProject.crbProject.Domain.CurrencyType;
+import com.crbProject.crbProject.Domain.Tcl01Client;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-public class Tln03Loan {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	private String accountnumber;
+public class InnerLoan {
+
+    private String accountnumber;
 	
 	private String accountowner;
 	
@@ -41,9 +33,6 @@ public class Tln03Loan {
 	private String category;
 	
 	private String classification;
-	
-//	@ManyToOne
-//	private Country countryid;
 	
 	@Enumerated(EnumType.STRING)
 	private CurrencyType CurrencyType;
@@ -108,16 +97,7 @@ public class Tln03Loan {
 	
 	private String termsDuration;
 	
-	@OneToOne
-	private Tcl01Client clientid;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int clientid;
 
 	public String getAccountnumber() {
 		return accountnumber;
@@ -431,33 +411,14 @@ public class Tln03Loan {
 		this.termsDuration = termsDuration;
 	}
 
-	public Tcl01Client getClientid() {
+	public int getClientid() {
 		return clientid;
 	}
 
-	public void setClientid(Tcl01Client clientid) {
+	public void setClientid(int clientid) {
 		this.clientid = clientid;
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
