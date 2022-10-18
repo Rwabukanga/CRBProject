@@ -43,10 +43,12 @@ public class VillageController {
 		ResponseBean rb = new ResponseBean();
 		
 		try {
-			
+			Cell c=null;
 			Optional<Cell> cell= cellservice.findByid(village.getCellid());
 			
-			Cell c=cell.get();
+			if(cell.isPresent()) {
+				c=cell.get();
+			}
 			Tcl554ASvillage vill = new Tcl554ASvillage();
 			
 			vill.setName(village.getName());

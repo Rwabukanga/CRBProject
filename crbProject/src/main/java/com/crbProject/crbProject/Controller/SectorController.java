@@ -41,9 +41,11 @@ public class SectorController {
 		ResponseBean rb = new ResponseBean();
 		
 		try {
-			
+			District district = null;
 			Optional<District> d = districtservice.findByid(sector.getDistrictid());
-			District district = d.get();
+			if(d.isPresent()) {
+				district = d.get();
+			}
 			
 			Sector s = new Sector();
 			
@@ -56,9 +58,6 @@ public class SectorController {
 				rb.setCode(Messages.SUCCESS_CODE);
 				rb.setDescription(Messages.save);
 				rb.setObject(s);	
-				
-
-			
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();

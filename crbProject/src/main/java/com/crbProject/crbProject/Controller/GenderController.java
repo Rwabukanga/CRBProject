@@ -38,17 +38,14 @@ public class GenderController {
 		try {
 			  Gender c = new Gender();
 			
-			    c.setName(gender.getName());
+			   c.setName(gender.getName());
 			
-			    genderservice.createGender(c);
+			   genderservice.createGender(c);
 			
-				rb.setCode(Messages.SUCCESS_CODE);
+			    rb.setCode(Messages.SUCCESS_CODE);
 				rb.setDescription(Messages.save);
 				rb.setObject(c);	
 				
-
-			
-			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			rb.setCode(Messages.ERROR_CODE);
@@ -56,7 +53,6 @@ public class GenderController {
 		}
 		
 		return new ResponseEntity<Object>(rb, HttpStatus.OK);
-		
 		
 	}
 	

@@ -26,6 +26,7 @@ public class InnerLoan {
 	
 	private double amountPastDue;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date approvalDate;
 	
 	private double availableCredit;
