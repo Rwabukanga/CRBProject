@@ -6,46 +6,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.crbProject.crbProject.Domain.Gender;
-import com.crbProject.crbProject.Service.GenderService;
+import com.crbProject.crbProject.Domain.Tcl550MaritStatus;
+import com.crbProject.crbProject.Service.Tcl550MaritStatusService;
 import com.crbProject.crbProject.Utility.Messages;
 import com.crbProject.crbProject.Utility.ResponseBean;
-import com.crbProject.crbProject.innerDomain.InnerGender;
+import com.crbProject.crbProject.innerDomain.InnerMaritStatus;
 
 
-@Controller
+@RestController
 @CrossOrigin
-@RequestMapping(value="/gender")
-public class GenderController {
-
+@RequestMapping(value="/martalstatus")
+public class MaritStatusController {
+	
+	
 	@Autowired
-	private GenderService genderservice;
+	private Tcl550MaritStatusService martservice;
 	
 	
-
 	@CrossOrigin
-	@RequestMapping(value="/savegender", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<Object> createEmployee(HttpServletRequest request, @RequestBody InnerGender gender){
+	@RequestMapping(value="/savemartalstatus", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Object> createVillage(HttpServletRequest request, @RequestBody InnerMaritStatus martalstaus){
 		
 		ResponseBean rb = new ResponseBean();
 		
 		try {
-			  Gender c = new Gender();
 			
-			   c.setName(gender.getName());
 			
-			   genderservice.createGender(c);
+			Tcl550MaritStatus mart = new Tcl550MaritStatus();
 			
-			    rb.setCode(Messages.SUCCESS_CODE);
-				rb.setDescription(Messages.save);
-				rb.setObject(c);	
+			mart.setName(martalstaus.getName());
+			
+			martservice.createMartalStatus(mart);
+			
+			rb.setCode(Messages.SUCCESS_CODE);
+			rb.setDescription(Messages.save);
+			rb.setObject(mart);	
 				
+
+			
+			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			rb.setCode(Messages.ERROR_CODE);
@@ -54,8 +59,8 @@ public class GenderController {
 		
 		return new ResponseEntity<Object>(rb, HttpStatus.OK);
 		
+		
 	}
 	
-	
-	
+
 }

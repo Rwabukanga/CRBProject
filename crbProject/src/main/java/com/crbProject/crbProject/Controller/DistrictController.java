@@ -41,16 +41,18 @@ public class DistrictController {
 		ResponseBean rb = new ResponseBean();
 		
 		try {
-			  Province c = new Province();
+			  Province c = null;
 			
 			  Optional<Province> p = provinceservice.findByid(district.getProvinceid());
 			 
-			  Province province = p.get();
+			 if(p.isPresent()) {
+				 c = p.get();
+			 }
 			  
 			  District d = new District();
 			  
 			  d.setName(district.getName());
-			  d.setProvinceid(province);
+			  d.setProvinceid(c);
 			  
 			  districtservice.createDistrict(d);
 			  
@@ -58,9 +60,7 @@ public class DistrictController {
 				rb.setDescription(Messages.save);
 				rb.setObject(d);	
 				
-
-			
-			
+	
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			rb.setCode(Messages.ERROR_CODE);
@@ -68,7 +68,6 @@ public class DistrictController {
 		}
 		
 		return new ResponseEntity<Object>(rb, HttpStatus.OK);
-		
 		
 	}
 	

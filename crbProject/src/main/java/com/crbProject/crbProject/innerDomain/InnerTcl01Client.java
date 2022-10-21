@@ -1,23 +1,18 @@
-package com.crbProject.crbProject.Domain;
+package com.crbProject.crbProject.innerDomain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.crbProject.crbProject.Domain.Country;
+import com.crbProject.crbProject.Domain.Gender;
+import com.crbProject.crbProject.Domain.Tcl550MaritStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-public class Tcl01Client {
+public class InnerTcl01Client {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 	
-	private String firstname;
+    private String firstname;
 	
 	private String lastname;
 	
@@ -34,13 +29,11 @@ public class Tcl01Client {
 	
 	private String employerAddressLine2;
 	
-	@ManyToOne
-	private Country countryid;
+	private int countryid;
 	
 	private String employerTown;
 	
-	@ManyToOne
-	private Gender genderid;
+	private int genderid;
 	
 	private String groupName;
 	
@@ -50,8 +43,7 @@ public class Tcl01Client {
 	
 	private String homeTelephone;
 	
-	@ManyToOne
-	private Tcl550MaritStatus maritstatusid;
+	private int maritstatusid;
 	
 	private String mobileTelephone;
 	
@@ -64,7 +56,7 @@ public class Tcl01Client {
 	private String physicalAddressPlotNumber;
 	
 	private String physicalAddressPostalCode;
-	
+
 	private String placeOfBirth;
 	
 	private String postalAddressNumber;
@@ -81,16 +73,7 @@ public class Tcl01Client {
 	
 	private String workTelephone;
 	
-	@ManyToOne
-	private Tcl554ASvillage villageid;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int villageid;
 
 	public String getFirstname() {
 		return firstname;
@@ -156,11 +139,13 @@ public class Tcl01Client {
 		this.employerAddressLine2 = employerAddressLine2;
 	}
 
-	public Country getCountryid() {
+	
+
+	public int getCountryid() {
 		return countryid;
 	}
 
-	public void setCountryid(Country countryid) {
+	public void setCountryid(int countryid) {
 		this.countryid = countryid;
 	}
 
@@ -170,6 +155,14 @@ public class Tcl01Client {
 
 	public void setEmployerTown(String employerTown) {
 		this.employerTown = employerTown;
+	}
+
+	public int getGenderid() {
+		return genderid;
+	}
+
+	public void setGenderid(int genderid) {
+		this.genderid = genderid;
 	}
 
 	public String getGroupName() {
@@ -202,6 +195,14 @@ public class Tcl01Client {
 
 	public void setHomeTelephone(String homeTelephone) {
 		this.homeTelephone = homeTelephone;
+	}
+
+	public int getMaritstatusid() {
+		return maritstatusid;
+	}
+
+	public void setMaritstatusid(int maritstatusid) {
+		this.maritstatusid = maritstatusid;
 	}
 
 	public String getMobileTelephone() {
@@ -316,34 +317,13 @@ public class Tcl01Client {
 		this.workTelephone = workTelephone;
 	}
 
-	public Gender getGenderid() {
-		return genderid;
-	}
-
-	public void setGenderid(Gender genderid) {
-		this.genderid = genderid;
-	}
-
-	public Tcl550MaritStatus getMaritstatusid() {
-		return maritstatusid;
-	}
-
-	public void setMaritstatusid(Tcl550MaritStatus maritstatusid) {
-		this.maritstatusid = maritstatusid;
-	}
-
-	public Tcl554ASvillage getVillageid() {
+	public int getVillageid() {
 		return villageid;
 	}
 
-	public void setVillageid(Tcl554ASvillage villageid) {
+	public void setVillageid(int villageid) {
 		this.villageid = villageid;
 	}
-
-	
-	
-	
-	
 	
 	
 	

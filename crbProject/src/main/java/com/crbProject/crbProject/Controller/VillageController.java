@@ -8,58 +8,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.crbProject.crbProject.Domain.Cell;
-import com.crbProject.crbProject.Domain.Sector;
+import com.crbProject.crbProject.Domain.Tcl554ASvillage;
 import com.crbProject.crbProject.Service.CellService;
-import com.crbProject.crbProject.Service.SectorService;
+import com.crbProject.crbProject.Service.Tcl554ASvillageService;
 import com.crbProject.crbProject.Utility.Messages;
 import com.crbProject.crbProject.Utility.ResponseBean;
-import com.crbProject.crbProject.innerDomain.InnerCell;
+import com.crbProject.crbProject.innerDomain.InnerTcl554ASvillage;
 
-@Controller
+
+@RestController
 @CrossOrigin
-@RequestMapping(value="/cell")
-public class CellController {
+@RequestMapping(value="/village")
+public class VillageController {
+	
+	@Autowired
+	private Tcl554ASvillageService villageservice;
 	
 	@Autowired
 	private CellService cellservice;
 	
-	@Autowired
-	private SectorService sectorservice;
-	
 	
 	
 	@CrossOrigin
-	@RequestMapping(value="/savecell", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<Object> createCell(HttpServletRequest request, @RequestBody InnerCell cell){
+	@RequestMapping(value="/savevillage", method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Object> createVillage(HttpServletRequest request, @RequestBody InnerTcl554ASvillage village){
 		
 		ResponseBean rb = new ResponseBean();
 		
 		try {
+			Cell c=null;
+			Optional<Cell> cell= cellservice.findByid(village.getCellid());
 			
-			Optional<Sector> sector= sectorservice.findByid(cell.getSectorid());
-			
-			Sector s = sector.get();
-			
-			if(s==null) {
-				rb.setCode(Messages.ERROR_CODE);
-				rb.setDescription("failed to find it");
-			}else {
-				Cell c = new Cell();
-				c.setName(cell.getName());
-				c.setSectorid(s);
-				cellservice.createCell(c);
-				
-				rb.setCode(Messages.SUCCESS_CODE);
-				rb.setDescription(Messages.save);
-				rb.setObject(c);
+			if(cell.isPresent()) {
+				c=cell.get();
 			}
+			Tcl554ASvillage vill = new Tcl554ASvillage();
+			
+			vill.setName(village.getName());
+			vill.setCellid(c);
+			
+			villageservice.createTcl01Client(vill);
+			
+			rb.setCode(Messages.SUCCESS_CODE);
+			rb.setDescription(Messages.save);
+			rb.setObject(vill);	
+				
+
 			
 			
 		}catch(Exception ex) {
@@ -72,6 +73,8 @@ public class CellController {
 		
 		
 	}
+	
+	
 	
 	
 	
